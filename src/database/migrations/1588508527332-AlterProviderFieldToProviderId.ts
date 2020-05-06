@@ -1,9 +1,11 @@
 import {
+  getConnection,
   MigrationInterface,
   QueryRunner,
   TableColumn,
   TableForeignKey,
 } from 'typeorm';
+import Appointment from '../../models/appointment';
 
 export default class AlterProviderFieldToProviderId1588508527332
   implements MigrationInterface {

@@ -12,11 +12,11 @@ class CreateUserService {
     const usersRepository = getRepository(User);
 
     const checkUserExists = await usersRepository.findOne({
-      where: email,
+      where: { email },
     });
 
     if (checkUserExists) {
-      throw Error('Email adress already used.');
+      throw Error('Email address already used.');
     }
 
     const user = usersRepository.create({
@@ -25,7 +25,7 @@ class CreateUserService {
       password,
     });
 
-    usersRepository.save(user);
+    await usersRepository.save(user);
 
     return user;
   }
