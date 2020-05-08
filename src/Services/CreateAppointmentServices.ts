@@ -3,6 +3,7 @@ import { getCustomRepository } from 'typeorm';
 
 import Appointment from '../models/appointment';
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
+import AppError from '../errors/AppError';
 
 interface RequestDTO {
   provider_id: string;
@@ -22,7 +23,7 @@ class CreateAppointmentServices {
     );
 
     if (findAppointmentInTheSameDate) {
-      throw Error(
+      throw new AppError(
         'This time has already been taken, please select another time.',
       );
     }

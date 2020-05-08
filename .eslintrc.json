@@ -21,6 +21,14 @@
   "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
     "ignoreDestructuring": true,
+    "no-underscore-dangle": "off",
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "_"
+      }
+    ],
     "prettier/prettier": "error",
     "class-methods-use-this": "off",
     "import/extensions": [

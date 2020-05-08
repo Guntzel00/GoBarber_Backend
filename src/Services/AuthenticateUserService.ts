@@ -4,6 +4,7 @@ import { sign } from 'jsonwebtoken';
 
 import User from '../models/user';
 import auth from '../config/auth';
+import AppError from '../errors/AppError';
 
 interface Request {
   email: string;
@@ -24,12 +25,12 @@ class AuthenticateUserService {
     });
 
     if (!user) {
-      throw Error('Email or password incorrect');
+      throw new AppError('Email or password incorrect', 401);
     }
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw Error('Email or password incorrect');
+      throw new AppError('Email or password incorrect', 401);
     }
 
     const { secret_key, expiresIn } = auth.jwt;
